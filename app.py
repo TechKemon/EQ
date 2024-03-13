@@ -2,7 +2,7 @@
 
 import streamlit as st
 import json
-#import difflib
+# import difflib
 # import os
 # import warnings
 # import sys
@@ -19,6 +19,7 @@ with open('optimized_scheme_questions.json', 'r') as f:
 st.title("Scheme Optimisation")
 # st.set_page_config(page_title="Scheme Optimisation", page_icon="���", layout="wide")
 
+@st.cache_data
 def search_key(query, data):
     # For simplicity, this just checks if the query is a substring of the key
     # For more advanced semantic search, use Elasticsearch, or NLP libraries like Spacy or NLTK,
@@ -47,4 +48,7 @@ if query:
             st.markdown(output, unsafe_allow_html=True)
     else:
         st.write('No matching scheme found.')
+        # st.cache_data.clear()
 
+st.slider('Rate your response', min_value=0, max_value=10)
+st.date_input('Today\'s date')

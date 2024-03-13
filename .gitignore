@@ -1,4 +1,4 @@
 images
-/ops.env
 data
-
+.DS_Store
+ops/.env
