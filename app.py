@@ -6,7 +6,7 @@ import difflib
 # import os
 # import sys
 import warnings
-import unidecode
+#import unidecode
 
 warnings.filterwarnings("ignore")
 
@@ -27,15 +27,17 @@ def main():
     if user_input:
         scheme_keys = list(data.keys())
         matches = get_closest_match(user_input.lower(), [key.lower() for key in scheme_keys])
-        
+    else:
+        matches = []
+    
     if matches:
-            matched_key = matches[0]
-            st.multiselect('Multiselect', [matches[0],matches[1],matches[2]])
-            matched_value = data[scheme_keys[[key.lower() for key in scheme_keys].index(matched_key)]]
-            st.write(f"Eligibility criteria for {matched_key}:")
-            st.write(matched_value)
-        else:
-            st.write("No matching scheme found.")
+        matched_key = matches[0]
+        #st.multiselect('Multiselect', [matches[0],matches[1],matches[2]])
+        matched_value = data[scheme_keys[[key.lower() for key in scheme_keys].index(matched_key)]]
+        st.write(f"Eligibility criteria for {matched_key}:")
+        st.write(matched_value)
+    else:
+        st.write("No matching scheme found.")
     
     st.slider('Rate your response', min_value=0, max_value=10)
     st.date_input('Today\'s date')
